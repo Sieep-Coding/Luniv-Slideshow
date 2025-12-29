@@ -2,10 +2,11 @@ package main
 
 import (
 	"Luniv-Slideshow/lunivslideshow"
-	"fmt"
 )
 
 func main() {
-	lunivslideshow.ReturnDefaultSlideShow()
-	fmt.Println("Hello, World!")
+	show := lunivslideshow.ReturnDefaultSlideShow()
+	lunivslideshow.RenderCurrentSlide(&show)
+	lunivslideshow.AdvanceSlide(&show)
+	lunivslideshow.RenderCurrentSlide(&show)
 }

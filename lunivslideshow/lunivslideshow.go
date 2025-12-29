@@ -3,7 +3,7 @@ package lunivslideshow
 import "fmt"
 
 type SlideShow struct {
-	Slides       []Slide
+	Slides       *[]Slide
 	CurrentIndex int
 }
 
@@ -34,7 +34,7 @@ func ConvertColorsToHex() BackgroundColors {
 
 func ReturnDefaultSlideShow() SlideShow {
 	return SlideShow{
-		Slides: []Slide{
+		Slides: &[]Slide{
 			{
 				Title:           "Welcome to Luniv Slideshow",
 				BackgroundColor: BackgroundColors{}.Blue,
@@ -51,14 +51,14 @@ func ReturnDefaultSlideShow() SlideShow {
 }
 
 func AdvanceSlide(show *SlideShow) {
-	if show.CurrentIndex < len(show.Slides)-1 {
+	if show.CurrentIndex < len(*show.Slides)-1 {
 		show.CurrentIndex++
 	}
 }
 
 func RenderCurrentSlide(show *SlideShow) {
-	if show.CurrentIndex < len(show.Slides) {
-		slide := show.Slides[show.CurrentIndex]
+	if show.CurrentIndex < len(*show.Slides) {
+		slide := (*show.Slides)[show.CurrentIndex]
 		if slide.Title == "" && slide.Content == "" {
 			fmt.Println("Slide or Slide Title is empty.")
 			return
